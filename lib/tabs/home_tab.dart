@@ -13,7 +13,7 @@ class HomeTab extends StatelessWidget {
         _buildBodyBack(),
         CustomScrollView(
           slivers: [
-            const SliverAppBar(
+            const SliverAppBar(iconTheme: IconThemeData(color: Colors.white),
               // title: Center(
               //   child: Text(
               //     'Novidades',
@@ -75,7 +75,7 @@ class HomeTab extends StatelessWidget {
           gradient: LinearGradient(
             colors: [
               Color.fromARGB(255, 211, 118, 130),
-              Color.fromARGB(255, 253, 181, 168)
+              Color.fromARGB(255, 253, 101, 100)
             ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,

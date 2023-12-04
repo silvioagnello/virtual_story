@@ -1,7 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:scoped_model/scoped_model.dart';
 import 'package:virtual_story/firebase_options.dart';
+import 'package:virtual_story/models/user_model.dart';
 import 'package:virtual_story/screens/home_screen.dart';
 import 'package:flutter/material.dart';
+// import 'package:virtual_story/screens/login_screen.dart';
+// import 'package:virtual_story/screens/signup_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,17 +20,20 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        primaryColor: const Color.fromARGB(255, 4, 125, 141),
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-
-        useMaterial3: true,
+    return ScopedModel<UserModel>(
+      model: UserModel(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          primaryColor: const Color.fromARGB(255, 4, 125, 141),
+          //colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+      
+          useMaterial3: true,
+        ),
+        home: HomeScreen(),
       ),
-      home: const HomeScreen(),
     );
   }
 }
