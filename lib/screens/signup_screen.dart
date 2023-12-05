@@ -11,11 +11,8 @@ class SignupScreen extends StatefulWidget {
 
 class _SignupScreenState extends State<SignupScreen> {
   final _nameController = TextEditingController();
-
   final _emailController = TextEditingController();
-
   final _passController = TextEditingController();
-
   final _addressController = TextEditingController();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   final _formKey = GlobalKey<FormState>();
@@ -31,9 +28,7 @@ class _SignupScreenState extends State<SignupScreen> {
       body: ScopedModelDescendant<UserModel>(
         builder: (context, child, model) {
           if (model.isLoading) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
+            return const Center(child: CircularProgressIndicator());
           }
           return Form(
             key: _formKey,
@@ -73,15 +68,18 @@ class _SignupScreenState extends State<SignupScreen> {
                     },
                     decoration: const InputDecoration(hintText: 'Senha'),
                     obscureText: true),
-                TextFormField(
-                    controller: _addressController,
-                    validator: (text) {
-                      if (text!.isEmpty || text.length < 6) {
-                        return 'Digite um endereço';
-                      }
-                      return null;
-                    },
-                    decoration: const InputDecoration(hintText: 'Endereço')),
+                Padding(
+                  padding: const EdgeInsets.only(top: 18.0),
+                  child: TextFormField(
+                      controller: _addressController,
+                      validator: (text) {
+                        if (text!.isEmpty || text.length < 6) {
+                          return 'Digite um endereço';
+                        }
+                        return null;
+                      },
+                      decoration: const InputDecoration(hintText: 'Endereço')),
+                ),
                 Padding(
                   padding: const EdgeInsets.all(18.0),
                   child: ElevatedButton(
@@ -92,12 +90,12 @@ class _SignupScreenState extends State<SignupScreen> {
                           "email": _emailController.text,
                           "address": _addressController.text,
                         };
-
                         model.signUp(
-                            userData: userData,
-                            pass: _passController.text,
-                            onSuccess: () => _onSuccess(),
-                            onFail: () => _onFail(),);
+                          userData: userData,
+                          pass: _passController.text,
+                          onSuccess: () => _onSuccess(),
+                          onFail: () => _onFail(),
+                        );
                       }
                     },
                     child: const Text('Criar Conta',
@@ -115,15 +113,19 @@ class _SignupScreenState extends State<SignupScreen> {
   }
 
   void _onSuccess() {
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+      content: Center(child: Text("Criado com Sucesso!")),
+      backgroundColor: Colors.cyanAccent,
+      duration: Duration(seconds: 2),
+    ));
     Navigator.of(context).pop();
   }
 
   void _onFail() {
-    ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Falha ao criar!"),
-          backgroundColor: Colors.redAccent,
-          duration: Duration(seconds: 2),
-        )
-    );
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+      content: Center(child: Text("Falha ao criar!")),
+      backgroundColor: Colors.redAccent,
+      duration: Duration(seconds: 2),
+    ));
   }
 }

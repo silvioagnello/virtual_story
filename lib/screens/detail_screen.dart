@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:virtual_story/datas/cart_product.dart';
 import 'package:virtual_story/datas/product_data.dart';
+import 'package:virtual_story/models/cart_model.dart';
+import 'package:virtual_story/models/user_model.dart';
+import 'package:virtual_story/screens/cart_screen.dart';
+import 'package:virtual_story/screens/login_screen.dart';
 
 class DetailScreen extends StatefulWidget {
-
   final ProductData product;
 
   const DetailScreen({super.key, required this.product});
@@ -16,6 +20,7 @@ class _DetailScreenState extends State<DetailScreen> {
   String size = '';
   final ProductData product;
   final CarouselController _carouselController = CarouselController();
+
   _DetailScreenState(this.product);
 
   @override
@@ -50,7 +55,8 @@ class _DetailScreenState extends State<DetailScreen> {
                     style: const TextStyle(
                         fontSize: 20.0, fontWeight: FontWeight.w200),
                     maxLines: 3),
-                Text(product.description!, style: const TextStyle(fontSize: 16.0)),
+                Text(product.description!,
+                    style: const TextStyle(fontSize: 16.0)),
                 Text(
                   "R\$ ${product.price?.toStringAsFixed(2)}",
                   style: TextStyle(
@@ -105,10 +111,30 @@ class _DetailScreenState extends State<DetailScreen> {
                   child: ElevatedButton(
                     style:
                         ElevatedButton.styleFrom(backgroundColor: primaryColor),
-                    onPressed: size != '' ? () {} : null,
-                    child: const Text(
-                      'Adicionar ao carrinho',
-                      style: TextStyle(fontSize: 18.0, color: Colors.white),
+                    onPressed: size != ''
+                        ? () {
+                            if (UserModel.of(context).isLoggedIn()) {
+                              CartProduct cartProduct = CartProduct();
+                              cartProduct.size = size;
+                              cartProduct.quantity = 1;
+                              cartProduct.pid = product.id;
+                              cartProduct.productData = product;
+                              cartProduct.category = product.category;
+                              CartModel.of(context).addCartItem(cartProduct);
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => CartScreen()));
+                            } else {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => const LoginScreen()));
+                            }
+                          }
+                        : null,
+                    child: Text(
+                      UserModel.of(context).isLoggedIn()
+                          ? 'Adicionar ao carrinho'
+                          : 'Entre para comprar',
+                      style:
+                          const TextStyle(fontSize: 18.0, color: Colors.white),
                     ),
                   ),
                 ),
