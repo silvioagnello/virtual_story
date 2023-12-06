@@ -9,7 +9,11 @@ class CartModel extends Model {
 
   List<CartProduct> products = [];
 
-  CartModel(this.user);
+  CartModel(this.user){
+    if(user!.isLoggedIn()){
+    _loadCartItems();
+    }
+  }
 
   bool isLoading = false;
 
@@ -40,6 +44,31 @@ class CartModel extends Model {
         .delete();
     products.remove(cartProduct);
     notifyListeners();
+  }
 
+  void incProduct(CartProduct cartProduct) {
+    cartProduct.quantity++;
+    FirebaseFirestore.instance.collection('users').doc(user?.firebaseUser?.uid)
+        .collection('cart').doc(cartProduct.cid)
+        .update(cartProduct.toMap());
+    notifyListeners();
+  }
+
+  void decProduct(CartProduct cartProduct) {
+    cartProduct.quantity--;
+
+    FirebaseFirestore.instance.collection('users').doc(user?.firebaseUser?.uid)
+        .collection('cart').doc(cartProduct.cid)
+        .update(cartProduct.toMap());
+    notifyListeners();
+  }
+
+  void _loadCartItems() async {
+    QuerySnapshot query = await FirebaseFirestore.instance.collection('users').doc(user?.firebaseUser?.uid)
+        .collection('cart')
+        .get();
+
+    products = query.docs.map((doc) => CartProduct.fromDocument(doc)).toList();
+    notifyListeners();
   }
 }

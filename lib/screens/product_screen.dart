@@ -37,7 +37,7 @@ class ProductScreen extends StatelessWidget {
                   GridView.builder(
                     padding: const EdgeInsets.all(4.0),
                     gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
+                        SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 2,
                             mainAxisSpacing: 4.0,
                             crossAxisSpacing: 4.0,
@@ -47,7 +47,6 @@ class ProductScreen extends StatelessWidget {
                       ProductData data =
                           ProductData.fromDocument(snapshot.data!.docs[index]);
                       data.category = this.snapshot.id;
-
                       return ProductTile("grid", data);
                     },
                   ),

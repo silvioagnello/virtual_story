@@ -11,14 +11,12 @@ class ProductTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-        onTap: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) => DetailScreen(product: data),
-            ),
-          );
-        },
-        child: Card(
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => DetailScreen(product: data)),
+        );
+      },
+      child: Card(
           child: type == 'grid'
               ? Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -59,27 +57,30 @@ class ProductTile extends StatelessWidget {
                         child: Image.network(data.images![0],
                             fit: BoxFit.cover, height: 250)),
                     Flexible(
-                        flex: 1,
-                        child: Container(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            children: [
-                              Text(
-                                data.title!,
-                                style: const TextStyle(fontWeight: FontWeight.w500),
+                      flex: 1,
+                      child: Container(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          children: [
+                            Text(
+                              data.title!,
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.w500),
+                            ),
+                            Text(
+                              "R\$ ${data.price?.toStringAsFixed(2)}",
+                              style: TextStyle(
+                                color: Theme.of(context).primaryColor,
+                                fontSize: 17.0,
+                                fontWeight: FontWeight.bold,
                               ),
-                              Text(
-                                "R\$ ${data.price?.toStringAsFixed(2)}",
-                                style: TextStyle(
-                                    color: Theme.of(context).primaryColor,
-                                    fontSize: 17.0,
-                                    fontWeight: FontWeight.bold),
-                              )
-                            ],
-                          ),
-                        ))
+                            ),
+                          ],
+                        ),
+                      ),
+                    )
                   ],
-                ),
-        ));
+                )),
+    );
   }
 }
