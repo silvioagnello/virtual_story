@@ -9,7 +9,7 @@ class CartButton extends StatelessWidget {
     return FloatingActionButton(
       onPressed: () {
         Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => CartScreen()));
+            .push(MaterialPageRoute(builder: (context) => const CartScreen()));
       },
       backgroundColor: Theme.of(context).primaryColor,
       child: const Icon(Icons.shopping_cart, color: Colors.white),

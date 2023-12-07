@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:virtual_story/datas/product_data.dart';
 import 'package:virtual_story/tiles/product_tile.dart';
+import 'package:virtual_story/widgets/discount_card.dart';
 
 class ProductScreen extends StatelessWidget {
   final DocumentSnapshot snapshot;
@@ -37,7 +38,7 @@ class ProductScreen extends StatelessWidget {
                   GridView.builder(
                     padding: const EdgeInsets.all(4.0),
                     gridDelegate:
-                        SliverGridDelegateWithFixedCrossAxisCount(
+                        const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 2,
                             mainAxisSpacing: 4.0,
                             crossAxisSpacing: 4.0,
@@ -59,7 +60,7 @@ class ProductScreen extends StatelessWidget {
                       data.category = this.snapshot.id;
                       return ProductTile("list", data);
                     },
-                  )
+                  ),
                 ],
               );
             }

@@ -13,6 +13,7 @@ class CartTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget _buildContent() {
+      CartModel.of(context).updatePrices();
       return Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -93,8 +94,8 @@ class CartTile extends StatelessWidget {
                   } else {
                     return Container(
                       height: 70.0,
-                      child: const CircularProgressIndicator(),
                       alignment: Alignment.center,
+                      child: const CircularProgressIndicator(),
                     );
                   }
                 })

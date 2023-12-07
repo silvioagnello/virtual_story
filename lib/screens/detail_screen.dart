@@ -122,7 +122,7 @@ class _DetailScreenState extends State<DetailScreen> {
                               cartProduct.category = product.category;
                               CartModel.of(context).addCartItem(cartProduct);
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => CartScreen()));
+                                  builder: (context) => const CartScreen()));
                             } else {
                               Navigator.of(context).push(MaterialPageRoute(
                                   builder: (context) => const LoginScreen()));

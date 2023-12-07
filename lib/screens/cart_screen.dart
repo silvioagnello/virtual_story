@@ -3,8 +3,12 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:virtual_story/models/cart_model.dart';
 import 'package:virtual_story/models/user_model.dart';
 import 'package:virtual_story/screens/login_screen.dart';
+import 'package:virtual_story/screens/order_screen.dart';
 import 'package:virtual_story/tiles/cart_tile.dart';
+import 'package:virtual_story/widgets/cart_price.dart';
 import 'package:virtual_story/widgets/custom_message.dart';
+import 'package:virtual_story/widgets/discount_card.dart';
+import 'package:virtual_story/widgets/ship_card.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
@@ -35,7 +39,7 @@ class CartScreen extends StatelessWidget {
             return const Center(child: CircularProgressIndicator());
           } else if (!UserModel.of(context).isLoggedIn()) {
             return CustomMensagem("Faça o login para adicionar produtos!", 0);
-          } else if (model.products.isEmpty && model.products.isEmpty) {
+          } else if (model.products.isEmpty && model.products.length == 0) {
             return const Center(
               child: Text("Nenhum produto no Carrinho",
                   style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
@@ -48,33 +52,23 @@ class CartScreen extends StatelessWidget {
                   children: model.products.map((e) {
                     return CartTile(cartProduct: e);
                   }).toList(),
-                )
+                ),
+                const DiscountCard(),
+                const ShipCard(),
+                CartPrice(
+                  () async {
+                    String? orderId = await model.finishOrder();
+                    if (orderId != null) {
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(
+                          builder: (context) => OrderScreen(orderId: orderId),
+                        ),
+                      );
+                    }
+                  },
+                ),
               ],
             );
-            // return Container(
-            //   padding: const EdgeInsets.all(16.0),
-            //   child: Column(
-            //     crossAxisAlignment: CrossAxisAlignment.stretch,
-            //     mainAxisAlignment: MainAxisAlignment.center,
-            //     children: [
-            //       Icon(Icons.remove_shopping_cart,
-            //           size: 80.0, color: Theme.of(context).primaryColor),
-            //       const SizedBox(height: 16.0),
-            //       const Text('Faça Login para adicionar produtos',
-            //           textAlign: TextAlign.center,
-            //           style: TextStyle(
-            //               fontSize: 20.0, fontWeight: FontWeight.bold)),
-            //       const SizedBox(height: 16.0),
-            //       ElevatedButton(
-            //           onPressed: () {
-            //             Navigator.of(context).push(MaterialPageRoute(
-            //                 builder: (context) => LoginScreen()));
-            //           },
-            //           child: const Text('Entrar',
-            //               style: TextStyle(fontSize: 18.0)))
-            //     ],
-            //   ),
-            // );
           }
         },
       ),
