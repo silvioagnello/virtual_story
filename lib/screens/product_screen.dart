@@ -42,7 +42,7 @@ class ProductScreen extends StatelessWidget {
                             crossAxisCount: 2,
                             mainAxisSpacing: 4.0,
                             crossAxisSpacing: 4.0,
-                            childAspectRatio: 0.65),
+                            childAspectRatio: 0.58),
                     itemCount: snapshot.data!.docs.length,
                     itemBuilder: (context, index) {
                       ProductData data =

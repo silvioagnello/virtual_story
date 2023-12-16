@@ -24,13 +24,13 @@ class CustomDrawer extends StatelessWidget {
     return Drawer(
       child: Stack(
         children: [
-          _buildDrawerBack(),
+          //_buildDrawerBack(),
           ListView(
             padding: const EdgeInsets.only(left: 32.0, top: 16.0),
             children: [
               Container(
                 margin: const EdgeInsets.only(bottom: 18.0),
-                padding: const EdgeInsets.fromLTRB(0.0, 16.0, 16.0, 8.0),
+                padding: const EdgeInsets.fromLTRB(0.0, 6.0, 16.0, 0.0),
                 height: 170.0,
                 child: Stack(
                   children: [
@@ -40,9 +40,9 @@ class CustomDrawer extends StatelessWidget {
                       child: Padding(
                         padding: EdgeInsets.only(bottom: 28.0),
                         child: Text(
-                          "Flutter's\nClothin",
-                          style: TextStyle(
-                              fontSize: 34.0, fontWeight: FontWeight.bold),
+                          "LiveAloe Pinhais",
+                          style: TextStyle(fontFamily: 'Lobster Two', color: Colors.green,
+                              fontSize: 30.0, fontWeight: FontWeight.bold),
                         ),
                       ),
                     ),
@@ -94,25 +94,25 @@ class CustomDrawer extends StatelessWidget {
               DrawerTile(
                 controller: pageController,
                 page: 0,
-                icon: Icons.home,
+                icon: Icons.home_work,
                 text: 'Início',
               ),
               DrawerTile(
                 controller: pageController,
                 page: 1,
-                icon: Icons.list,
+                icon: Icons.widgets_outlined,
                 text: 'Produtos',
               ),
               DrawerTile(
                 controller: pageController,
                 page: 2,
-                icon: Icons.location_on,
+                icon: Icons.not_listed_location_outlined,
                 text: 'Lojas',
               ),
               DrawerTile(
                 controller: pageController,
                 page: 3,
-                icon: Icons.playlist_add_check,
+                icon: Icons.app_registration_outlined,
                 text: 'Meus Pedidos',
               ),
             ],

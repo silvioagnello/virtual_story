@@ -49,7 +49,7 @@ class HomeTab extends StatelessWidget {
                 } else {
                   return SliverMasonryGrid.count(
                     //SliverStaggeredGrid.count
-                    crossAxisCount: 2,
+                    crossAxisCount: 1,
                     mainAxisSpacing: 2.0,
                     crossAxisSpacing: 2.0,
                     itemBuilder: (context, index) {

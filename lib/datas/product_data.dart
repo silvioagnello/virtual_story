@@ -5,6 +5,7 @@ class ProductData {
   String? title;
   String? description;
   String? category;
+  String? details;
   double? price;
   List? images;
   List? sizes;
@@ -13,6 +14,7 @@ class ProductData {
     id = snapshot.id;
     title = snapshot.get("title");
     description = snapshot.get("description");
+    details = snapshot.get('details');
     price = snapshot.get("price") + 0.0;
     images = snapshot.get("images");
     sizes = snapshot.get("sizes");

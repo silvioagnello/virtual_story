@@ -27,15 +27,15 @@ class ProductTile extends StatelessWidget {
                     child: Image.network(data.images![0], fit: BoxFit.cover),
                   ),
                   Expanded(
-                    child: Container(
-                      padding: const EdgeInsets.all(8.0),
+                    child: Container(//color: Colors.red,
+                      padding: const EdgeInsets.all(10.0),
                       child: Column(
                         children: [
                           Padding(
                               padding:
                                   const EdgeInsets.only(left: 2.0, bottom: 1.0),
                               child: Text(data.title!,
-                                  style: const TextStyle(
+                                  style: const TextStyle(//fontSize: 12,
                                       fontWeight: FontWeight.w500))),
                           Text(
                             "R\$ ${data.price?.toStringAsFixed(2)}",

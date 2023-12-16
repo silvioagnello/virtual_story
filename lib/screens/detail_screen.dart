@@ -32,13 +32,13 @@ class _DetailScreenState extends State<DetailScreen> {
       body: ListView(
         children: [
           AspectRatio(
-            aspectRatio: 0.9,
+            aspectRatio: 1.0,
             child: CarouselSlider(
               carouselController: _carouselController,
               options: CarouselOptions(
                 enlargeCenterPage: true,
                 autoPlay: false,
-                aspectRatio: 1.0,
+                aspectRatio: 0.9,
                 enlargeStrategy: CenterPageEnlargeStrategy.height,
               ),
               items: product.images?.map((e) {
@@ -47,22 +47,33 @@ class _DetailScreenState extends State<DetailScreen> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(19.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Text(product.title!,
                     style: const TextStyle(
-                        fontSize: 20.0, fontWeight: FontWeight.w200),
+                        fontSize: 20.0, fontWeight: FontWeight.w500),
                     maxLines: 3),
                 Text(product.description!,
                     style: const TextStyle(fontSize: 16.0)),
+                const SizedBox(height: 8),
                 Text(
                   "R\$ ${product.price?.toStringAsFixed(2)}",
                   style: TextStyle(
                       fontSize: 22.0,
                       fontWeight: FontWeight.bold,
                       color: primaryColor),
+                ),
+                const SizedBox(height: 8.0),
+                Text(
+                  product.details!,
+                  style: const TextStyle(
+                    fontFamily: "Poppins",
+                    color: Colors.green,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
                 const SizedBox(height: 16.0),
                 const Text('Tamanho',

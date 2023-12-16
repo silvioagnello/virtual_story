@@ -19,7 +19,7 @@ class UserModel extends Model {
   @override
   void addListener(VoidCallback listener) {
     super.addListener(listener);
-      _loadCurrentUser();
+    _loadCurrentUser();
   }
 
   Future<void> recoverPass(String email) async {
@@ -48,7 +48,6 @@ class UserModel extends Model {
       notifyListeners();
       return;
     });
-
   }
 
   void signOut() async {
