@@ -110,7 +110,7 @@ class CartModel extends Model {
     if (preco > 0) {
       return preco;
     } else {
-      return 10.00;
+      return 0.00;
     }
   }
 

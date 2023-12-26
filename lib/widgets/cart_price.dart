@@ -40,7 +40,7 @@ class CartPrice extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Desconto '),
+                    const Text('Desconto '),
                     Text('R\$ -${discount.toStringAsFixed(2)}'),
                   ],
                 ),
@@ -48,7 +48,7 @@ class CartPrice extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text('Entrega(Promocional)'),
+                    const Text('Entrega'),
                     Text('R\$ -${ship.toStringAsFixed(2)}'),
                   ],
                 ),
@@ -57,11 +57,11 @@ class CartPrice extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Total',
+                    const Text('Total',
                         style: TextStyle(
                             fontWeight: FontWeight.w500, fontSize: 16.0)),
                     Text('R\$ ${(price - ship - discount).toStringAsFixed(2)}',
-                        style: TextStyle(color: Colors.blue, fontSize: 16.0)),
+                        style: const TextStyle(color: Colors.blue, fontSize: 16.0)),
                   ],
                 ),
                 const SizedBox(height: 12.0),
