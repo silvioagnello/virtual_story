@@ -8,6 +8,17 @@ class HomeTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var larguraTela = MediaQuery.of(context).size.width;
+
+      int colunas = 2;
+      if( larguraTela <= 600 ){
+        colunas = 2;
+      }else if( larguraTela <= 960 ){
+        colunas = 4;
+      }else {
+        colunas = 6;
+      }
+
     return Stack(
       children: [
         _buildBodyBack(),
@@ -48,8 +59,7 @@ class HomeTab extends StatelessWidget {
                   );
                 } else {
                   return SliverMasonryGrid.count(
-                    //SliverStaggeredGrid.count
-                    crossAxisCount: 1,
+                    crossAxisCount: colunas,
                     mainAxisSpacing: 2.0,
                     crossAxisSpacing: 2.0,
                     itemBuilder: (context, index) {

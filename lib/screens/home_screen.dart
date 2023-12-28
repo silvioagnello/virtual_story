@@ -38,12 +38,12 @@ class HomeScreen extends StatelessWidget {
           drawer: CustomDrawer(pageController: _pageController),
         ),
         Scaffold(
-          appBar: AppBar(title: Text('Lojas'), centerTitle: true),
+          appBar: AppBar(title: const Text('Lojas'), centerTitle: true),
           body: const PlacesTab(),
           drawer: CustomDrawer(pageController: _pageController),
         ),
         Scaffold(
-          appBar: AppBar(title: Text('Meus Pedidos'), centerTitle: true),
+          appBar: AppBar(title: const Text('Meus Pedidos'), centerTitle: true),
           body: const OrdersTab(),
           drawer: CustomDrawer(pageController: _pageController),
           floatingActionButton: const CartButton(),
